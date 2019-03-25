@@ -114,6 +114,37 @@ function rollDoubleD6(){
 
 }
 
+
+function rollD12(){
+
+    const random = Math.random();
+    const input = random * 6;
+    const rolls = Math.ceil(input);
+    sixes.push(rolls);
+
+
+    const mean = myMean(sixes);
+    const median = myMedian(sixes);
+
+    
+    const meanPrint = document.querySelector('#d12-rolls-mean')
+    meanPrint.innerText = mean;
+    const medianPrint = document.querySelector('#d12-rolls-median');
+    medianPrint.innerText = median;
+
+
+    
+    const rollSrc = mySixSidedImage(rolls);
+    const rollImage = document.querySelector('#d12-roll');
+    rollImage.src = rollSrc;
+
+}
+
+
+
+
+
+
 /*
 # ========================================================
 # = Math Functions
