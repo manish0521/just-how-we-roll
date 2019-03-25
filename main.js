@@ -11,6 +11,8 @@ const twenties = [];
 
 window.onload = init;
 
+
+
 function init() {
     const d6Roll = document.querySelector('#d6-roll');
     d6Roll.addEventListener('click', rollD6);
@@ -55,13 +57,116 @@ function setStartingImages() {
 # ========================================================
 # = Roll Functions
 # ========================================================
-*/
+ */
+
+function rollD6(){
+    const random = Math.random();
+    const input = random * 6;
+    const rolls = Math.ceil(input);
+    sixes.push(rolls);
+
+
+    const mean = myMean(sixes);
+    const median = myMedian(sixes);
+
+    
+    const meanPrint = document.querySelector('#d6-rolls-mean')
+    meanPrint.innerText = mean;
+    const medianPrint = document.querySelector('#d6-rolls-median');
+    medianPrint.innerText = median;
+
+
+    
+    const rollSrc = mySixSidedImage(rolls);
+    const rollImage = document.querySelector('#d6-roll');
+    rollImage.src = rollSrc;
+
+}
+
+function rollDoubleD6(){
+
+    const roll1 = getRandomNumber(6);
+    const roll2 = getRandomNumber(6);
+    const rolls = roll1 + roll2;
+    doubleSixes.push(rolls);
+
+
+    const mean = myMean(doubleSixes);
+    const median = myMedian(doubleSixes);
+
+
+    const meanPrint = document.querySelector('#double-d6-rolls-mean')
+    meanPrint.innerText = mean;
+    const medianPrint = document.querySelector('#double-d6-rolls-median');
+    medianPrint.innerText = median;
+
+
+
+    const rollSrc1 = mySixSidedImage(roll1);
+    const rollImage1 = document.querySelector('#double-d6-roll-1');
+
+    const rollSrc2 = mySixSidedImage(roll2);
+    const rollImage2 = document.querySelector('#double-d6-roll-2');
+    
+    rollImage1.src = rollSrc1;
+    rollImage2.src = rollSrc2;
+
+
+}
+
 
 /*
 # ========================================================
 # = Math Functions
 # ========================================================
 */
+
+
+function myMean(avg) {
+    let sum = 0;
+
+    for (let i = 0; i < avg.length; i++) {
+        sum = sum + avg[i];
+    }
+
+
+    const mean = (sum / avg.length);
+
+
+    return mean;
+}
+
+
+
+function getRandomNumber() {
+    const random = Math.random();
+    const input = random * 6;
+    const result = Math.ceil(input);
+
+    return result; 
+}
+
+
+
+function myMedian(value) {
+    const ordered = value.sort();
+    const midPoint = Math.floor(ordered.length / 2);
+
+    return ordered[midPoint];
+}
+
+
+
+function mySixSidedImage(rolls) {
+    return `/images/d6/${rolls}.png`;
+}
+
+
+function NumberImage(rolls) {
+    return `/images/numbers/${rolls}.png`;
+}
+
+
 
 /*
 # ========================================================
