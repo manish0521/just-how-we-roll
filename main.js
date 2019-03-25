@@ -217,14 +217,6 @@ function myMedian(value) {
 
 
 
-function mySixSidedImage(rolls) {
-    return `/images/d6/${rolls}.png`;
-}
-
-
-function NumberImage(rolls) {
-    return `/images/numbers/${rolls}.png`;
-}
 
 
 
